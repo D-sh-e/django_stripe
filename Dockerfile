@@ -26,7 +26,7 @@ EXPOSE 8000
 # Запуск приложения
 CMD sh -c "python manage.py migrate --noinput && \
            python manage.py collectstatic --noinput && \
-           python manage.py loaddata data.json --noinput && \
+           python manage.py loaddata data.json && \
            gunicorn --bind 0.0.0.0:8000 stripe_project.wsgi:application"
 
 
