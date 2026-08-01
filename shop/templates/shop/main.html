@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{% static 'shop/css/main.css' %}">
+
+</head>
+<body>
+  <table class="main_table">
+  <tr>
+      <td>ID</td>
+      <td>Name</td>
+      <td>Description</td>
+      <td>Price</td>
+      <td>Payment intent</td>
+    </tr>
+    {% for item in items %}
+  
+    <tr>
+      <td>{{ item.id }}</td>
+      <td><a href="{% url "shop:item" item.id %}">{{ item.name }}</a></td>
+      <td>{{ item.description }}</td>
+      <td>{{ item.price }} usd</td>
+      <td><a href="{% url "shop:payment_intent" item.id %}">{{ item.name }}</a></td>
+    </tr>
+
+  
+{% endfor %}
+
+    </table>
+
+    
+</body>
+</html>

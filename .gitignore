@@ -1,0 +1,23 @@
+.env
+*.pyc
+__pycache__
+db.sqlite3
+/static/
+/media/
+
+# Environment
+.env
+.venv
+venv/
+
+# IDE
+.vscode/
+*.swp
+*.swo
+
+# Static files
+staticfiles/
+
+
+# Logs
+*.log

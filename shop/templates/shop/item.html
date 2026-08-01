@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Купить {{ item.name }}</title>
+    <link rel="stylesheet" href="{% static 'shop/css/main.css' %}">
+
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <div class="item">
+        <h1>{{ item.name }}</h1>
+        <p><b>Описание:</b> {{ item.description }}</p>
+        <p><b>Цена:</b> {{ item.price }} usd</p>
+        <button id="buy_button">Купить</button>
+    </div>
+
+    <script>
+       
+        const stripe = Stripe('{{ stripe_public_key }}');
+        const buyButton = document.getElementById('buy_button');
+        buyButton.addEventListener('click', async function() {
+
+            try {
+                const response = await fetch('/buy/{{ item.id }}');
+                const session = await response.json();
+                window.location.href = session.url;
+            } 
+            catch (error) {
+                console.error(error);
+                alert('Ошибка');
+            }
+                });
+
+    </script>
+    
+</body>
+</html>
